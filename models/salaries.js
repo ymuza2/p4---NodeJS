@@ -1,9 +1,8 @@
-//Salaries must have empId, salary, from_date, to_date
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const salariesFields = {
+const salaryFields = {
     
     from_date:Date,
     to_date:Date,
@@ -12,10 +11,10 @@ const salariesFields = {
     
 };
 
-const employeeSchema = new Schema(employeeFields);
+const salarySchema = new Schema(salaryFields);
   
-const Employee = mongoose.model('Employee', employeeSchema);
-if (!Employee.collection.collection) {
-  Employee.createCollection();
+const Salary = mongoose.model('Salary', salarySchema);
+if (!Salary.collection.collection) {
+  Salary.createCollection();
 }
-module.exports = {Employee, employeeFields};
+module.exports = {Salary, salaryFields};
