@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const titleFields = {
     
-    from_date:Date,
-    to_date:Date,
+    from_date:String,
+    to_date:String,
     title:String,
     empID:Schema.Types.ObjectId
     

@@ -3,7 +3,7 @@ const gnx = require("@simtlix/gnx");
 const dept_employee = require("../models/dept_employees").Dept_employee;
 const Employee = require("../models/employees").Employee;
 const EmployeeType = require("./employees");
-const DeparmentType = require("./departments");
+
 
 const {
   AuditableObjectFields,
@@ -26,7 +26,8 @@ const Dept_employeeType = new GraphQLObjectType({
   fields: () =>
     Object.assign(AuditableObjectFields, {
       deptID: { type: GraphQLInt },
-      from_date: {Type:AuditableObjectFields.createdAt},
+      from_date: {type: GraphQLString },
+      to_date: {type: GraphQLString},
       empID: {
         type: EmployeeType,
         extensions: {

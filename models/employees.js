@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 
 const employeeFields = {
     dni:Number,
-    birth_date:Date,
+    birth_date:String,
     first_name:String,
     last_name:String,
     gender:String,
-    hire_date:Date
+    hire_date:String
 };
 
 const employeeSchema = new Schema(employeeFields);

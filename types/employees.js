@@ -37,7 +37,7 @@ const EmployeeType = new GraphQLObjectType({
   fields: () =>
     Object.assign(AuditableObjectFields, {
       dni: { type: GraphQLInt },  
-      birth_date: { type: AuditableObjectFields.createdAt},//BUSCAR UN METODO U ESCALAR DEL TIPO 'DATE'.
+      birth_date: { type:  GraphQLString},
       first_name: { type: GraphQLString },
       last_name: { type: GraphQLString },
       gender: { type: SexTypeEnum },

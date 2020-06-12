@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 const salaryFields = {
     
-    from_date:Date,
-    to_date:Date,
+    from_date:String,
+    to_date:String,
     salary:Number,
     empID:Schema.Types.ObjectId
     

@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const dept_managerFields = {
     
-    from_date:Date,
-    to_date:Date,
+    from_date:String,
+    to_date:String,
     deptID:Schema.Types.ObjectId,
     empID:Schema.Types.ObjectId
     

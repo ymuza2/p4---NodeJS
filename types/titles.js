@@ -7,11 +7,12 @@ const {
   AuditableObjectFields,
 } = require("./extended_types/auditableGraphQLObjectType");
 
+const EmployeeType = require("./employees");
+
 /*const {
   CantRepeatName,
   CantDeleteAuthorWithBooks,
 } = require('../validations/employee.validation');*/
-
 
 const {
   GraphQLString,
@@ -22,25 +23,27 @@ const {
   GraphQLInt,
 } = graphql;
 
-
-
 const TitleType = new GraphQLObjectType({
   name: "TitleType",
   description: "Represent titles",
-  extensions: {
-   
-  }, 
+  extensions: {},
   fields: () =>
     Object.assign(AuditableObjectFields, {
-      dni: { type: GraphQLInt },  
-      birth_date: { type: AuditableObjectFields.createdAt},//BUSCAR UN METODO U ESCALAR DEL TIPO 'DATE'.
-      first_name: { type: GraphQLString },
-      last_name: { type: GraphQLString },
-      gender: { type: SexTypeEnum },
-      hire_date: { type:GraphQLInt },
+      from_date: { type: GraphQLString }, //BUSCAR UN METODO U ESCALAR DEL TIPO 'DATE'.
+      to_date: { type: GraphQLString },
+      title: { type: GraphQLString },
+      empID: {
+        type: EmployeeType,
+        extensions: {
+          relation: { connectionField: "empID" },
+        },
+        resolve(parent, args) {
+          return Employee.findById(parent.empID);
+        },
+      },
     }),
 });
 
-gnx.connect(title, TitleType, 'Title', 'Titles');
+gnx.connect(title, TitleType, "Title", "Titles");
 
 module.exports = TitleType;
