@@ -7,7 +7,8 @@ const salaryFields = {
     from_date:String,
     to_date:String,
     salary:Number,
-    empID:Schema.Types.ObjectId
+    empID:Schema.Types.ObjectId 
+    
     
 };
 

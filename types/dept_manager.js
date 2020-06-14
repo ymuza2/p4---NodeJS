@@ -24,6 +24,7 @@ const Dept_managerType = new GraphQLObjectType({
 
   fields: () =>
     Object.assign(AuditableObjectFields, {
+      id:{type: GraphQLID},
       from_date: { type: GraphQLString },
       to_date: { type: GraphQLString },
       deptID: { type: GraphQLInt },

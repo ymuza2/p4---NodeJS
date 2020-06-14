@@ -29,16 +29,17 @@ const TitleType = new GraphQLObjectType({
   extensions: {},
   fields: () =>
     Object.assign(AuditableObjectFields, {
-      from_date: { type: GraphQLString }, //BUSCAR UN METODO U ESCALAR DEL TIPO 'DATE'.
+      id:{type: GraphQLID},
+      from_date: { type: GraphQLString }, 
       to_date: { type: GraphQLString },
       title: { type: GraphQLString },
       empID: {
         type: EmployeeType,
         extensions: {
-          relation: { connectionField: "empID" },
+          relation: { connectionField: "employeeID" },
         },
         resolve(parent, args) {
-          return Employee.findById(parent.empID);
+          return Employee.findById(parent.employeeID);
         },
       },
     }),

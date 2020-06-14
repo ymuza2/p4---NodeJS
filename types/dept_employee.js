@@ -25,13 +25,14 @@ const Dept_employeeType = new GraphQLObjectType({
 
   fields: () =>
     Object.assign(AuditableObjectFields, {
-      deptID: { type: GraphQLInt },
+      id:{type: GraphQLID},
       from_date: {type: GraphQLString },
       to_date: {type: GraphQLString},
-      empID: {
+      empployee: {
         type: EmployeeType,
         extensions: {
           relation: { connectionField: "empID" },
+          embedded: false,
         },
         resolve(parent, args) {
           return Employee.findById(parent.empID);

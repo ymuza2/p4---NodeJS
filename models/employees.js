@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const employeeFields = {
-    dni:Number,
+    dni: Number,
     birth_date:String,
     first_name:String,
     last_name:String,
     gender:String,
-    hire_date:String
+    hire_date:String,
 };
 
 const employeeSchema = new Schema(employeeFields);

@@ -5,7 +5,6 @@ const dept_employeeFields = {
     
     from_date:String,
     to_date:String,
-    deptID:Schema.Types.ObjectId,
     empID:Schema.Types.ObjectId
     
 };

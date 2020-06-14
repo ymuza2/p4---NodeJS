@@ -24,7 +24,8 @@ const DepartmentType = new GraphQLObjectType({
     },
   fields: () =>
     Object.assign(AuditableObjectFields, {
-      name: { type: GraphQLString },
+      id:{type: GraphQLID},
+      dept_name: { type: GraphQLString },
     }),
 });
 

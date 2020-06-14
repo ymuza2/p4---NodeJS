@@ -11,8 +11,7 @@ const {
 
 const {
   CantRepeatName,
-  CantDeleteAuthorWithBooks,
-} = require('../validations/employee.validation');
+  } = require('../validations/employee.validation');
 
 
 const {
@@ -36,12 +35,13 @@ const EmployeeType = new GraphQLObjectType({
   }, 
   fields: () =>
     Object.assign(AuditableObjectFields, {
+      id:{type:GraphQLID},
       dni: { type: GraphQLInt },  
       birth_date: { type:  GraphQLString},
       first_name: { type: GraphQLString },
       last_name: { type: GraphQLString },
       gender: { type: SexTypeEnum },
-      hire_date: { type:GraphQLInt },
+      hire_date: { type:GraphQLString },
     }),
 });
 

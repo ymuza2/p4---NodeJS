@@ -1,36 +1,52 @@
 const graphql = require("graphql");
 const gnx = require("@simtlix/gnx");
 const Salary = require("../models/salaries").Salary;
-const SexTypeEnum = require("./enums/sex.enum");
+const EmployeeType = require("./employees");
+const Employee = require("../models/employees");
+const DepartmentType = require('../models/departments').department;
 
 const Date = require("../plugins/auditablePluginSchema");
 
 const {
   AuditableObjectFields,
 } = require("./extended_types/auditableGraphQLObjectType");
+const { department } = require("../models/departments");
 
 const {
   GraphQLString,
-  GraphQLNonNull,
   GraphQLID,
   GraphQLObjectType,
-  GraphQLList,
   GraphQLInt,
 } = graphql;
 
 const SalaryType = new GraphQLObjectType({
   name: "SalaryType",
-  description: "Represent salarys",
-  extensions: {
-  },
+  description: "Represent salaries",
+  extensions: {},
   fields: () =>
     Object.assign(AuditableObjectFields, {
+      id: { type: GraphQLID },
+      from_date: { type: GraphQLString },
+      to_date: { type: GraphQLString },
       salary: { type: GraphQLInt },
-      from_date: { type: GraphQLString }, //BUSCAR UN METODO U ESCALAR DEL TIPO 'DATE'.
-      to_name: { type: GraphQLString },
-      last_name: { type: GraphQLString },
-      gender: { type: SexTypeEnum },
-      hire_date: { type: GraphQLInt },
+      empID: {
+        type: EmployeeType,
+        extensions: {
+          relation: { connectionField: "employee_ID", embedded: false },
+        },
+        resolve(parent, args) {
+          return Employee.findById(parent.employee_ID);
+        },
+        department: {
+          type: DepartmentType,
+          extensions: {
+            relation: { connectionField: "dept_ID", embedded: false },
+          },
+          resolve(parent, args) {
+            return department.findById(parent.dept_ID);
+          },
+        },
+      },
     }),
 });
 
